@@ -1,0 +1,16 @@
+﻿[
+  {
+    "Name": "lotonews",
+    "Domain": "https://www.lotonews.ru",
+    "Prefix": "spa",
+    "GameTypes": "get-draw-info",
+    "GameArchive": "get-draw-archive?game="
+  },
+  {
+    "Name": "unknown",
+    "Domain": "https://www.test.ru",
+    "Prefix": "api",
+    "GameTypes": "get-draw-info",
+    "GameArchive": "get-test-games?game="
+  }
+]

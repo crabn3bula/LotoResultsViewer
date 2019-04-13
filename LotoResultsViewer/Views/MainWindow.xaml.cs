@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 
+
 namespace LotoResultsViewer.Views
 {
     /// <summary>
@@ -15,21 +16,23 @@ namespace LotoResultsViewer.Views
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            ResultArchiveGrid.ItemsSource = new[]
-            {
-                new {LastName = "Ivanov", FirstName = "Ivan"},
-                new {LastName = "Pertov", FirstName = "Petr"},
-                new {LastName = "Russkih", FirstName = "Russkiy"},
-                new {LastName = "Testov", FirstName = "Test"}
-            };
+            //ResultArchiveGrid.ItemsSource = new[]
+            //{
+            //    new {LastName = "Ivanov", FirstName = "Ivan"},
+            //    new {LastName = "Pertov", FirstName = "Petr"},
+            //    new {LastName = "Russkih", FirstName = "Russkiy"},
+            //    new {LastName = "Testov", FirstName = "Test"}
+            //};
 
-            phonesGrid.ItemsSource = new[]
-            {
-                new {LastName = "Ivanov", FirstName = "Ivan"},
-                new {LastName = "Pertov", FirstName = "Petr"},
-                new {LastName = "Russkih", FirstName = "Russkiy"},
-                new {LastName = "Testov", FirstName = "Test"}
-            };
+            //phonesGrid.ItemsSource = new[]
+            //{
+            //    new {LastName = "Ivanov", FirstName = "Ivan"},
+            //    new {LastName = "Pertov", FirstName = "Petr"},
+            //    new {LastName = "Russkih", FirstName = "Russkiy"},
+            //    new {LastName = "Testov", FirstName = "Test"}
+            //};
         }
+
+        
     }
 }

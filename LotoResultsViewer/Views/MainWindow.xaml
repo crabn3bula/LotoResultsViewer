@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:LotoResultsViewer.ViewModels"
         mc:Ignorable="d"
-        Title="СтоЛото" 
+        Title="LotoResultsViewer" 
         Height="600" 
         Width="1000">
 
     <Window.DataContext>
-        <viewModels:MainWindowModel/>
+        <viewModels:MainWindowViewModel/>
     </Window.DataContext>
     
     <Grid>
@@ -18,9 +18,26 @@
             <ColumnDefinition Width="200*"/>
             <ColumnDefinition Width="400*"/>
         </Grid.ColumnDefinitions>
-
+           
         <Grid>
-            <ListBox x:Name="ResultArchiveGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="15*"/>
+                <RowDefinition Height="15*"/>
+                <RowDefinition Height="400*"/>
+            </Grid.RowDefinitions>
+
+            <ComboBox Grid.Row="0" 
+                      x:Name="ApiProvidersComboBox"
+                      ItemsSource="{Binding ApiProviders}"
+                      SelectedItem="{Binding SelectedProvider}"
+                      />
+            <ComboBox Grid.Row="1" 
+                      x:Name="ProviderGameTypesComboBox"
+                      ItemsSource="{Binding GameTypes, UpdateSourceTrigger=PropertyChanged}"
+                      SelectedItem="{Binding SelectedGameType, UpdateSourceTrigger=PropertyChanged}"
+                      />
+
+            <ListBox Grid.Row="2" x:Name="ResultArchiveGrid">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>
@@ -52,7 +69,9 @@
                 </Grid.RowDefinitions>
 
                 <Grid Background="Lavender">
-                    <DataGrid x:Name="phonesGrid" AutoGenerateColumns="True">
+                    <DataGrid x:Name="phonesGrid" 
+                              AutoGenerateColumns="True"
+                              ItemsSource="{Binding GameResultArchive}">
 
                     </DataGrid>
 
