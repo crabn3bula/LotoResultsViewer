@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Net;
 using System.Windows;
+using JetBrains.Annotations;
 using LotoResultsViewer.Models.Data;
 using LotoResultsViewer.Models.Entities;
 using LotoResultsViewer.Models.Interfaces;
@@ -11,7 +14,7 @@ namespace LotoResultsViewer.Services
 {
     public class ApiProviderService
     {
-        public ObservableCollection<GameType> GetGameTypes(IApiProvider apiProvider)
+        public ObservableCollection<GameType> GetGameTypes([NotNull] IApiProvider apiProvider)
         {
             using (var w = new WebClient())
             {
@@ -28,17 +31,17 @@ namespace LotoResultsViewer.Services
                 // if string with JSON data is not empty, deserialize it to class and return its instance 
                 if (!string.IsNullOrEmpty(jsonData))
                 {
-                    var message = JsonConvert.DeserializeObject<ResponseMessage>(jsonData);
-                    if (message.Status == HttpStatusCode.OK)
+                    var message = JsonConvert.DeserializeObject<ResponseMessage<ObservableCollection<GameType>>>(jsonData);
+                    if (message !=null && message.Status == HttpStatusCode.OK)
                     {
-                        return JsonConvert.DeserializeObject<ObservableCollection<GameType>>(message.Result.ToString());
+                        return message.Result;
                     }
                 }
                 return null;
             }
         }
 
-        public ObservableCollection<GameResultArchive> GetResultArchive(IApiProvider apiProvider, GameType gameType)
+        public ObservableCollection<GameResultTirage> GetResultArchive([NotNull] IApiProvider apiProvider, GameType gameType)
         {
             using (var w = new WebClient())
             {
@@ -53,11 +56,22 @@ namespace LotoResultsViewer.Services
                 }
                 if (!string.IsNullOrEmpty(jsonData))
                 {
-                    var message = JsonConvert.DeserializeObject<ResponseMessage>(jsonData);
-                    if (message?.Status == HttpStatusCode.OK)
+                    ObservableCollection<GameResultTirage> tiregesList = new ObservableCollection<GameResultTirage>();
+                    var message = JsonConvert.DeserializeObject<ResponseMessage<List<Dictionary<string, Dictionary<string, List<GameResultTirage>>>>>>(jsonData);
+                    foreach (var mes in message.Result[0].Values)
                     {
-                        var res = JsonConvert.DeserializeObject<ObservableCollection<GameResultArchive>>(message?.Result?.ToString());
-                        return JsonConvert.DeserializeObject<ObservableCollection<GameResultArchive>>(message?.Result?.ToString());
+                        foreach (var tirages in mes.Values)
+                        {
+                            foreach (var tirage in tirages)
+                            {
+                                tiregesList.Add(tirage);
+                            }
+                        }
+                    }
+
+                    if (message != null &&  message.Status == HttpStatusCode.OK)
+                    {
+                        return tiregesList;
                     }
                 }
                 return null;

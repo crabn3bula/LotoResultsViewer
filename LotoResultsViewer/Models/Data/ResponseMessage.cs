@@ -2,9 +2,9 @@
 
 namespace LotoResultsViewer.Models.Data
 {
-    public class ResponseMessage
+    public class ResponseMessage<T>
     {
         public HttpStatusCode Status { get; set; }
-        public object Result { get; set; }
+        public T Result { get; set; }
     }
 }

@@ -23,8 +23,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="15*"/>
                 <RowDefinition Height="15*"/>
-                <RowDefinition Height="100*"/>
-                <RowDefinition Height="300*"/>
+                <RowDefinition Height="400*"/>
             </Grid.RowDefinitions>
 
             <ComboBox Grid.Row="0" 
@@ -37,37 +36,14 @@
                       ItemsSource="{Binding GameTypes, UpdateSourceTrigger=PropertyChanged}"
                       SelectedItem="{Binding SelectedGameType, UpdateSourceTrigger=PropertyChanged}"
                       />
+            <Grid Grid.Row="2" Background="Lavender">
+                <DataGrid x:Name="TiragesGrid" 
+                          AutoGenerateColumns="True"
+                          ItemsSource="{Binding GameResultTirages}"
+                          IsReadOnly="True">
 
-            <TreeView Grid.Row="2" ItemsSource="{Binding GameResultArchive}">
-                <TreeView.ItemTemplate>
-                    <HierarchicalDataTemplate ItemsSource="{Binding GameResult}">
-                        <TextBlock Text="{Binding GameResult[JackpotSum]}"/>
-                    </HierarchicalDataTemplate>
-                </TreeView.ItemTemplate>
-            </TreeView>
-
-            <ListBox Grid.Row="4" x:Name="ResultArchiveGrid">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100*"/>
-                                <ColumnDefinition Width="50*"/>
-                                <ColumnDefinition Width="50*"/>
-                                <ColumnDefinition Width="50*"/>
-                                <ColumnDefinition Width="50*"/>
-                                <ColumnDefinition Width="50*"/>
-                                <ColumnDefinition Width="200*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <TextBlock Text="{Binding LastName}" Grid.Column="0"/>
-                            <TextBlock Text="{Binding FirstName}" Grid.Column="1"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                </DataGrid>
+            </Grid>
         </Grid>
 
         <Grid Grid.Column="1">
@@ -80,14 +56,13 @@
                 <Grid Background="Lavender">
                     <DataGrid x:Name="phonesGrid" 
                               AutoGenerateColumns="True"
-                              ItemsSource="{Binding GameResultArchive}">
+                              ItemsSource="{Binding GameResultTirages}">
 
                     </DataGrid>
-
-                    <StackPanel Grid.Row="1">
-
-                    </StackPanel>
                 </Grid>
+                <StackPanel Grid.Row="1">
+
+                </StackPanel>
             </Grid>
         </Grid>
     </Grid>

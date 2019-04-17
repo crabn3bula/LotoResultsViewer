@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using LotoResultsViewer.Models.Data;
@@ -64,18 +62,16 @@ namespace LotoResultsViewer.ViewModels
             {
                 _selectedGameType = value;
                 //StockOverflow!!! 
-                OnPropertyChanged("GameResultArchive");
+                OnPropertyChanged("GameResultTirages");
             }
         }
 
-        public ObservableCollection<GameResultArchive> GameResultArchive
+        public ObservableCollection<GameResultTirage> GameResultTirages
         {
             get
             {
                 if (SelectedProvider == null && SelectedGameType == null)
-                    return new ObservableCollection<GameResultArchive>();
-
-                var test = _apiProviderService.GetResultArchive(SelectedProvider, SelectedGameType);
+                    return new ObservableCollection<GameResultTirage>();
                 return _apiProviderService.GetResultArchive(SelectedProvider, SelectedGameType);
             }
         }
