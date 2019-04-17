@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net;
 using System.Windows;
@@ -55,9 +54,10 @@ namespace LotoResultsViewer.Services
                 if (!string.IsNullOrEmpty(jsonData))
                 {
                     var message = JsonConvert.DeserializeObject<ResponseMessage>(jsonData);
-                    if (message.Status == HttpStatusCode.OK)
+                    if (message?.Status == HttpStatusCode.OK)
                     {
-                        return JsonConvert.DeserializeObject<ObservableCollection<GameResultArchive>>(message.Result.ToString());
+                        var res = JsonConvert.DeserializeObject<ObservableCollection<GameResultArchive>>(message?.Result?.ToString());
+                        return JsonConvert.DeserializeObject<ObservableCollection<GameResultArchive>>(message?.Result?.ToString());
                     }
                 }
                 return null;

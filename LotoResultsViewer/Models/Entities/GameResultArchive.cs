@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace LotoResultsViewer.Models.Entities
 {
     public class GameResultArchive
     {
-        private Dictionary<string, GameResult[]> GameResult { get; set; }
+        [JsonProperty("2019")]
+        public Dictionary<string, GameResultYear[]> GameResultYear { get; set; }
     }
 }

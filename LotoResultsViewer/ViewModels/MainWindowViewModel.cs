@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using LotoResultsViewer.Models.Data;
@@ -73,6 +74,8 @@ namespace LotoResultsViewer.ViewModels
             {
                 if (SelectedProvider == null && SelectedGameType == null)
                     return new ObservableCollection<GameResultArchive>();
+
+                var test = _apiProviderService.GetResultArchive(SelectedProvider, SelectedGameType);
                 return _apiProviderService.GetResultArchive(SelectedProvider, SelectedGameType);
             }
         }

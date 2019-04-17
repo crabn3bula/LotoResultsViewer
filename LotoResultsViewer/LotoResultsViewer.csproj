@@ -66,7 +66,9 @@
     </Page>
     <Compile Include="Models\Data\ApiProvider.cs" />
     <Compile Include="Models\Data\ResponseMessage.cs" />
-    <Compile Include="Models\Entities\GameResult.cs" />
+    <Compile Include="Models\Entities\GameResultNumber.cs" />
+    <Compile Include="Models\Entities\GameResultTirage.cs" />
+    <Compile Include="Models\Entities\GameResultYear.cs" />
     <Compile Include="Models\Entities\GameType.cs" />
     <Compile Include="Models\Entities\GameResultArchive.cs" />
     <Compile Include="Models\Interfaces\IDataProvider.cs" />
